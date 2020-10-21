@@ -3,6 +3,7 @@ from .classmodule import MyClass
 from .funcmodule import gen_gitignore
 from .funcmodule import print_random0
 from .funcmodule import gen_flask_hello_world
+from .funcmodule import gen_flask_hello_world_heroku
 
 def help(cmd='all'):
     cmd_help = {}
@@ -14,6 +15,7 @@ def help(cmd='all'):
     cmd_help['pycheat'] += '\n\tpyfun pycheat random : random num ex'
     cmd_help['flask'] = '$ pyfun flask:'
     cmd_help['flask'] += '\n\tpyfun flask hello_world : gen flask hello world proj'
+    cmd_help['flask'] += '\n\tpyfun flask hello_world_heroku : gen flask hello world proj for heroku'
 
 
     if cmd == 'all':
@@ -55,6 +57,8 @@ def handle_flask(args):
     elif len(args) == 1:
         if args[0] == 'hello_world':
             gen_flask_hello_world()
+        elif args[0] == 'hello_world_heroku':
+            gen_flask_hello_world_heroku()
         else:
             help('flask')
     else:

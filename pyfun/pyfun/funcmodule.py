@@ -193,37 +193,8 @@ if __name__ == "__main__":
     app.run(debug=True)'''
     open('wsgi.py', 'w').write(wsgi_str)
 
-    requirements_str = '''appdirs==1.4.3
-CacheControl==0.12.6
-certifi==2019.11.28
-chardet==3.0.4
-click==7.1.2
-colorama==0.4.3
-contextlib2==0.6.0
-distlib==0.3.0
-distro==1.4.0
-Flask==1.1.2
-html5lib==1.0.1
-idna==2.8
-ipaddr==2.2.0
-itsdangerous==1.1.0
-Jinja2==2.11.2
-lockfile==0.12.2
-MarkupSafe==1.1.1
-msgpack==0.6.2
-packaging==20.3
-pep517==0.8.2
-progress==1.5
-pyparsing==2.4.6
-pytoml==0.1.21
-requests==2.22.0
-retrying==1.3.3
-six==1.14.0
-urllib3==1.25.8
-webencodings==0.5.1
-Werkzeug==1.0.1'''
+    requirements_str = '''flask'''
     open('requirements.txt', 'w').write(requirements_str)
-    open('req_cmd.txt', 'w').write('pip install flask')
 
     # app level
     os.mkdir('app')
@@ -265,3 +236,15 @@ if __name__ == "__main__":
     open('app/templates/index.html', 'w').write(index_str)
 
     os.mkdir('app/static')
+
+def gen_flask_hello_world_heroku():
+    gen_flask_hello_world()
+    
+    procfile_str = '''web: gunicorn wsgi:app'''
+    open('Procfile', 'w').write(procfile_str)
+
+    requirements = '''gunicorn
+flask'''
+    open('requirements.txt', 'w').write(requirements)
+
+    print('warning this method hasn\'t been proven to work yet')
