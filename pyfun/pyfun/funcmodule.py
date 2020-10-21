@@ -185,3 +185,83 @@ if __name__ == '__main__':
     random_choice()
     random_int()'''
     print(random_str)
+
+def gen_flask_hello_world():
+    wsgi_str = '''from app.main import app 
+
+if __name__ == "__main__": 
+    app.run(debug=True)'''
+    open('wsgi.py', 'w').write(wsgi_str)
+
+    requirements_str = '''appdirs==1.4.3
+CacheControl==0.12.6
+certifi==2019.11.28
+chardet==3.0.4
+click==7.1.2
+colorama==0.4.3
+contextlib2==0.6.0
+distlib==0.3.0
+distro==1.4.0
+Flask==1.1.2
+html5lib==1.0.1
+idna==2.8
+ipaddr==2.2.0
+itsdangerous==1.1.0
+Jinja2==2.11.2
+lockfile==0.12.2
+MarkupSafe==1.1.1
+msgpack==0.6.2
+packaging==20.3
+pep517==0.8.2
+progress==1.5
+pyparsing==2.4.6
+pytoml==0.1.21
+requests==2.22.0
+retrying==1.3.3
+six==1.14.0
+urllib3==1.25.8
+webencodings==0.5.1
+Werkzeug==1.0.1'''
+    open('requirements.txt', 'w').write(requirements_str)
+    open('req_cmd.txt', 'w').write('pip install flask')
+
+    # app level
+    os.mkdir('app')
+    main_str = '''from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST', 'PUT'])
+def index():
+    return render_template('index.html', title='Home page')
+
+if __name__ == "__main__":
+    app.run(debug=True)'''
+    open('app/main.py', 'w').write(main_str)
+
+    os.mkdir('app/templates')
+
+    base_str = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+</body>
+</html>'''
+    index_str = '''{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ title }}</title>
+{% endblock%}
+
+{% block body %}
+<h1>Hello world!</h1>
+{% endblock%}'''
+    open('app/templates/base.html', 'w').write(base_str)
+    open('app/templates/index.html', 'w').write(index_str)
+
+    os.mkdir('app/static')
