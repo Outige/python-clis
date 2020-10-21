@@ -4,29 +4,36 @@ from .funcmodule import gen_gitignore
 from .funcmodule import print_random0
 
 def help(cmd='all'):
-    if cmd == 'all':
-        print('pyfun help:')
-        print('\tpyfun help')
+    cmd_help = {}
+    cmd_help['help'] = '$ pyfun help:'
+    cmd_help['help'] += '\n\tpyfun help : show all commands'
+    cmd_help['git'] = '$ pyfun git:'
+    cmd_help['git'] += '\n\tpyfun git ignore : gen py gitignore'
+    cmd_help['pycheat'] = '$ pyfun pycheat:'
+    cmd_help['pycheat'] += '\n\tpyfun pycheat random : random num ex'
 
-        print('\npyfun git:')
-        print('\tpyfun git ignore')
-    elif cmd == 'pycheat':
-        print('$ pyfun pycheat:')
-        print('\tpyfun pycheat random')
+
+    if cmd == 'all':
+        for command in cmd_help:
+            print(cmd_help[command]+'\n')
+    elif cmd_help.get(cmd, 0):
+        print(cmd_help[cmd])
     else:
         print('help not availible for {}'.format(cmd))
 
 
 
 def get_help():
-    print('cmd not found\npyfun help')
+    print('cmd not found\n$ pyfun help')
 
 def handle_git(args):
-    if len(args) == 2:
-        if args[1] == 'ignore':
+    if len(args) == 0:
+        help('git')
+    elif len(args) == 1:
+        if args[0] == 'ignore':
             gen_gitignore()
         else:
-            get_help()
+            get_help()   
     else:
         get_help()
 
@@ -41,10 +48,10 @@ def handle_pycheat(args):
 
 def handle_args(args):
     if len(args) == 0:
-        get_help()
+        help()
     elif len(args) >= 1:
         if args[0] == 'git':
-            handle_git(args)
+            handle_git(args[1:])
         elif args[0] == 'pycheat':
             handle_pycheat(args[1:])
         elif args[0] == 'help':
