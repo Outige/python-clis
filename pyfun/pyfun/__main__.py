@@ -2,6 +2,8 @@ import sys
 from .classmodule import MyClass
 from .funcmodule import gen_gitignore
 from .funcmodule import print_random0
+from .funcmodule import gen_flask_hello_world
+from .funcmodule import gen_flask_hello_world_heroku
 
 def help(cmd='all'):
     cmd_help = {}
@@ -11,6 +13,9 @@ def help(cmd='all'):
     cmd_help['git'] += '\n\tpyfun git ignore : gen py gitignore'
     cmd_help['pycheat'] = '$ pyfun pycheat:'
     cmd_help['pycheat'] += '\n\tpyfun pycheat random : random num ex'
+    cmd_help['flask'] = '$ pyfun flask:'
+    cmd_help['flask'] += '\n\tpyfun flask hello_world : gen flask hello world proj'
+    cmd_help['flask'] += '\n\tpyfun flask hello_world_heroku : gen flask hello world proj for heroku'
 
 
     if cmd == 'all':
@@ -33,9 +38,9 @@ def handle_git(args):
         if args[0] == 'ignore':
             gen_gitignore()
         else:
-            get_help()   
+            help('git')   
     else:
-        get_help()
+        help('git')
 
 def handle_pycheat(args):
     if len(args) == 0:
@@ -46,6 +51,19 @@ def handle_pycheat(args):
         else:
             help('pycheat')
 
+def handle_flask(args):
+    if len(args) == 0:
+        help('flask')
+    elif len(args) == 1:
+        if args[0] == 'hello_world':
+            gen_flask_hello_world()
+        elif args[0] == 'hello_world_heroku':
+            gen_flask_hello_world_heroku()
+        else:
+            help('flask')
+    else:
+        help('flask')
+
 def handle_args(args):
     if len(args) == 0:
         help()
@@ -54,6 +72,8 @@ def handle_args(args):
             handle_git(args[1:])
         elif args[0] == 'pycheat':
             handle_pycheat(args[1:])
+        elif args[0] == 'flask':
+            handle_flask(args[1:])
         elif args[0] == 'help':
             help()
         else:

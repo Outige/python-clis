@@ -185,3 +185,66 @@ if __name__ == '__main__':
     random_choice()
     random_int()'''
     print(random_str)
+
+def gen_flask_hello_world():
+    wsgi_str = '''from app.main import app 
+
+if __name__ == "__main__": 
+    app.run(debug=True)'''
+    open('wsgi.py', 'w').write(wsgi_str)
+
+    requirements_str = '''flask'''
+    open('requirements.txt', 'w').write(requirements_str)
+
+    # app level
+    os.mkdir('app')
+    main_str = '''from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST', 'PUT'])
+def index():
+    return render_template('index.html', title='Home page')
+
+if __name__ == "__main__":
+    app.run(debug=True)'''
+    open('app/main.py', 'w').write(main_str)
+
+    os.mkdir('app/templates')
+
+    base_str = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+</body>
+</html>'''
+    index_str = '''{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ title }}</title>
+{% endblock%}
+
+{% block body %}
+<h1>Hello world!</h1>
+{% endblock%}'''
+    open('app/templates/base.html', 'w').write(base_str)
+    open('app/templates/index.html', 'w').write(index_str)
+
+    os.mkdir('app/static')
+
+def gen_flask_hello_world_heroku():
+    gen_flask_hello_world()
+    
+    procfile_str = '''web: gunicorn wsgi:app'''
+    open('Procfile', 'w').write(procfile_str)
+
+    requirements = '''gunicorn
+flask'''
+    open('requirements.txt', 'w').write(requirements)
+
+    print('warning this method hasn\'t been proven to work yet')
