@@ -4,6 +4,7 @@ from .funcmodule import gen_gitignore
 from .funcmodule import print_random0
 from .funcmodule import gen_flask_hello_world
 from .funcmodule import gen_flask_hello_world_heroku
+import pyfun
 
 def help(cmd='all'):
     cmd_help = {}

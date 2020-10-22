@@ -1,4 +1,5 @@
 import os
+import pyfun
 
 def my_function(text_to_display):
     print('text from my_function :: {}'.format(text_to_display))
@@ -155,36 +156,8 @@ cython_debug/'''
         fp.close()
 
 def print_random0():
-    # print(open('random0.py', 'r').read())
-    random_str = '''import random
-
-def random_random():
-    # returns: float[0, 1)
-    val = random.random()
-    print(val)
-
-def random_uniform():
-    #returns: float[1, 5] - not too sure about inclusivity
-    val = random.uniform(1, 5)
-    print(val)
-
-
-def random_choice():
-    vals = [3,6,7,8,3]
-    value = random.choice(vals)
-    print(value)
-
-def random_int():
-    # returns: int[0, 9]
-    val = random.randint(0, 9)
-    print(val)
-
-if __name__ == '__main__':
-    random_random()
-    random_uniform()
-    random_choice()
-    random_int()'''
-    print(random_str)
+    path = pyfun.__file__.replace('__init__.py', '')
+    print(open(path+'static/pycheat/random0.py', 'r').read())
 
 def gen_flask_hello_world():
     wsgi_str = '''from app.main import app 
