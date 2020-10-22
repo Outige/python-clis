@@ -160,11 +160,17 @@ def print_random0():
     print(open(path+'static/pycheat/random0.py', 'r').read())
 
 def gen_flask_hello_world():
-    wsgi_str = '''from app.main import app 
+#     wsgi_str = '''from app.main import app 
 
-if __name__ == "__main__": 
-    app.run(debug=True)'''
-    open('wsgi.py', 'w').write(wsgi_str)
+# if __name__ == "__main__": 
+#     app.run(debug=True)'''
+#     open('wsgi.py', 'w').write(wsgi_str)
+    path = pyfun.__file__.replace('__init__.py', '') + 'static/flask/hello_world/'
+
+    # print(path)
+    # wsgi_str = open(path+'wsgi.py', 'r').read()
+    open('wsgi.py', 'w').write(open(path+'wsgi.py', 'r').read())
+    return
 
     requirements_str = '''flask'''
     open('requirements.txt', 'w').write(requirements_str)
