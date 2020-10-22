@@ -39,3 +39,7 @@ def gen_flask_hello_world_heroku():
     open('requirements.txt', 'w').write(open(path+'requirements.txt', 'r').read())
 
     print('warning this method hasn\'t been proven to work yet')
+
+def print_flask_session():
+    path = pyfun.__file__.replace('__init__.py', '') + 'static/flask/session/'
+    print(open(path+'session0.py', 'r').read())

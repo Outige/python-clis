@@ -44,3 +44,4 @@ If this page is too busy you can type a more specific command like `pyfun pychea
 ### references
 * [python cli article](https://trstringer.com/easy-and-nice-python-cli/)
 * [random numbers video](https://www.youtube.com/watch?v=KzqSDvzOFNA)
+* [flask session](https://www.youtube.com/watch?v=iIhAfX4iek0&t=533s)

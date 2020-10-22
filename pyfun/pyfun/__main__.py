@@ -4,6 +4,7 @@ from .funcmodule import gen_gitignore
 from .funcmodule import print_random0
 from .funcmodule import gen_flask_hello_world
 from .funcmodule import gen_flask_hello_world_heroku
+from .funcmodule import print_flask_session
 import pyfun
 
 def help(cmd='all'):
@@ -17,6 +18,7 @@ def help(cmd='all'):
     cmd_help['flask'] = '$ pyfun flask:'
     cmd_help['flask'] += '\n\tpyfun flask hello_world : gen flask hello world proj'
     cmd_help['flask'] += '\n\tpyfun flask hello_world_heroku : gen flask hello world proj for heroku'
+    cmd_help['flask'] += '\n\tpyfun flask session : flask session ex'
 
 
     if cmd == 'all':
@@ -60,6 +62,8 @@ def handle_flask(args):
             gen_flask_hello_world()
         elif args[0] == 'hello_world_heroku':
             gen_flask_hello_world_heroku()
+        elif args[0] == 'session':
+            print_flask_session()
         else:
             help('flask')
     else:
