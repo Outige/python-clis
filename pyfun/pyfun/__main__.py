@@ -2,10 +2,12 @@ import sys
 from .classmodule import MyClass
 from .funcmodule import gen_gitignore
 from .funcmodule import print_random0
+from .funcmodule import print_timer0
 from .funcmodule import gen_flask_hello_world
 from .funcmodule import gen_flask_hello_world_heroku
 from .funcmodule import print_flask_session
 from .funcmodule import print_binary_search
+from .funcmodule import print_threading
 import pyfun
 
 def help(cmd='all'):
@@ -17,7 +19,8 @@ def help(cmd='all'):
     cmd_help['git'] += '\n\tpyfun git ignore : gen py gitignore'
     
     cmd_help['pycheat'] = '$ pyfun pycheat:'
-    cmd_help['pycheat'] += '\n\tpyfun pycheat random : random num ex'
+    cmd_help['pycheat'] += '\n\tpyfun pycheat random : prints random num ex'
+    cmd_help['pycheat'] += '\n\tpyfun pycheat timer : prints timer ex'
     
     cmd_help['flask'] = '$ pyfun flask:'
     cmd_help['flask'] += '\n\tpyfun flask hello_world : gen flask hello world proj'
@@ -26,6 +29,9 @@ def help(cmd='all'):
     
     cmd_help['algo'] = '$ pyfun algo:'
     cmd_help['algo'] += '\n\tpyfun algo binary_search : prints binary search code'
+
+    cmd_help['concy'] = '$ pyfun concy:'
+    cmd_help['concy'] += '\n\tpyfun concy threading : prints threading ex'
 
 
     if cmd == 'all':
@@ -58,6 +64,8 @@ def handle_pycheat(args):
     if len(args) == 1:
         if args[0] == 'random':
             print_random0()
+        if args[0] == 'timer':
+            print_timer0()
         else:
             help('pycheat')
 
@@ -87,6 +95,17 @@ def handle_algo(args):
     else:
         help('algo')
 
+def handle_concy(args):
+    if len(args) == 0:
+        help('concy')
+    elif len(args) == 1:
+        if args[0] == 'threading':
+            print_threading()
+        else:
+            help('concy')
+    else:
+        help('concy')
+
 def handle_args(args):
     if len(args) == 0:
         help()
@@ -99,6 +118,8 @@ def handle_args(args):
             handle_flask(args[1:])
         elif args[0] == 'algo':
             handle_algo(args[1:])
+        elif args[0] == 'concy':
+            handle_concy(args[1:])
         elif args[0] == 'help':
             help()
         else:

@@ -18,6 +18,10 @@ def print_random0():
     path = pyfun.__file__.replace('__init__.py', '')
     print(open(path+'static/pycheat/random0.py', 'r').read())
 
+def print_timer0():
+    path = pyfun.__file__.replace('__init__.py', '') + 'static/pycheat/timer0.py'
+    print(open(path, 'r').read())
+
 #flask
 def gen_flask_hello_world():
     path = pyfun.__file__.replace('__init__.py', '') + 'static/flask/hello_world/'
@@ -50,4 +54,9 @@ def print_flask_session():
 #algo
 def print_binary_search():
     path = pyfun.__file__.replace('__init__.py', '') + 'static/algo/binary_search/binary_search0.py'
+    print(open(path, 'r').read())
+
+#threading
+def print_threading():
+    path = pyfun.__file__.replace('__init__.py', '') + 'static/concy/threading0.py'
     print(open(path, 'r').read())
