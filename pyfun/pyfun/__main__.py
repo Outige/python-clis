@@ -5,20 +5,27 @@ from .funcmodule import print_random0
 from .funcmodule import gen_flask_hello_world
 from .funcmodule import gen_flask_hello_world_heroku
 from .funcmodule import print_flask_session
+from .funcmodule import print_binary_search
 import pyfun
 
 def help(cmd='all'):
     cmd_help = {}
     cmd_help['help'] = '$ pyfun help:'
     cmd_help['help'] += '\n\tpyfun help : show all commands'
+    
     cmd_help['git'] = '$ pyfun git:'
     cmd_help['git'] += '\n\tpyfun git ignore : gen py gitignore'
+    
     cmd_help['pycheat'] = '$ pyfun pycheat:'
     cmd_help['pycheat'] += '\n\tpyfun pycheat random : random num ex'
+    
     cmd_help['flask'] = '$ pyfun flask:'
     cmd_help['flask'] += '\n\tpyfun flask hello_world : gen flask hello world proj'
     cmd_help['flask'] += '\n\tpyfun flask hello_world_heroku : gen flask hello world proj for heroku'
     cmd_help['flask'] += '\n\tpyfun flask session : flask session ex'
+    
+    cmd_help['algo'] = '$ pyfun algo:'
+    cmd_help['algo'] += '\n\tpyfun algo binary_search : prints binary search code'
 
 
     if cmd == 'all':
@@ -69,6 +76,17 @@ def handle_flask(args):
     else:
         help('flask')
 
+def handle_algo(args):
+    if len(args) == 0:
+        help('algo')
+    elif len(args) == 1:
+        if args[0] == 'binary_search':
+            print_binary_search()
+        else:
+            help('algo')
+    else:
+        help('algo')
+
 def handle_args(args):
     if len(args) == 0:
         help()
@@ -79,6 +97,8 @@ def handle_args(args):
             handle_pycheat(args[1:])
         elif args[0] == 'flask':
             handle_flask(args[1:])
+        elif args[0] == 'algo':
+            handle_algo(args[1:])
         elif args[0] == 'help':
             help()
         else:
